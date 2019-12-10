@@ -2,9 +2,15 @@
 
 > A react-native demo about controlling image on different smartphones in lan
 
-We can Cross-screen control image in lan now.
+**We can Cross-screen control image in lan now.**
 
-This project has server which provides Websocket service.
+*This project has server which provides Websocket service.*
+
+## Implement
+
+- Using [React-Native](http://facebook.github.io/react-native/) as frame.
+- Using `react-native-image-pan-zoom` package to show the image.
+- Using `ws` package to construct the Websocket service which transports the message about image's position to other smartphones in same lan.
 
 ## Install
 

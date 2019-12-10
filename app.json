@@ -23,6 +23,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.guitenbay.hci"
+    },
     "ios": {
       "supportsTablet": true
     }
