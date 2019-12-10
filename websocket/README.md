@@ -13,7 +13,7 @@ This is the `node.js` server that creates a websocket from the `ws` npm packages
 1. `git clone` this repo
 2. `cd` into the `websocket` folder
 3. Run `npm install` in command line
-4. Open `app/config/config.js` and fill in your IP and port where the WebSocket should be running
+4. Open `app/config/config.js` and fill in your port where the WebSocket should be running
 5. Run `npm start`, this will execute the command `nodemon ./app/server.js`. Now your WebSocket is running
 
 **Notes:**

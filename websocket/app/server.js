@@ -1,6 +1,8 @@
 const WebSocket = require('ws')
 
-const wss = new WebSocket.Server({ port: 8080 });
+const config = require('../config/config');
+
+const wss = new WebSocket.Server({ port: config.port });
 console.log('[WebSocket] Starting WebSocket server...');
 
 wss.on('connection', (ws, request) => {
@@ -10,6 +12,7 @@ wss.on('connection', (ws, request) => {
   // Broadcast to all connected clients 
   ws.on('message', message => {
     wss.clients.forEach(client => {
+      if (client === ws) return;
       if (client.readyState === WebSocket.OPEN) {
         client.send(message);
       }

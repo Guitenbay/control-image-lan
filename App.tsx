@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { ShareImageZoom, IOnMove } from './views/ShareImageZoom';
 import { Snackbar, TextInput, IconButton, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
@@ -19,6 +19,7 @@ export default class App extends React.PureComponent<{}, IState> {
   private shareImageZoom: React.RefObject<ShareImageZoom> = React.createRef<ShareImageZoom>();
   private ws: WebSocket;
   private snackbarText: string;
+  private static deviceWidth: number = Dimensions.get("screen").width;
 
   constructor(props: any) {
     super(props);
@@ -62,6 +63,7 @@ export default class App extends React.PureComponent<{}, IState> {
   }
 
   private handleOnMove(params: IOnMove) {
+    params.positionX -= App.deviceWidth / params.scale;
     (this.state.isConnect && this.state.sendable) ? this.ws.send(JSON.stringify(params)) : '';
   }
 
@@ -87,7 +89,15 @@ export default class App extends React.PureComponent<{}, IState> {
               color={this.state.sendable ? 'green' : 'red'}
               icon={this.state.sendable ? 'send' : 'send-lock'}
               size={35}
-              onPress={() => this.state.sendable ? this.setState({ sendable: false }) : this.setState({ sendable: true })}>
+              onPress={() => this.state.sendable ? this.setState({ sendable: false }) : this.setState({ sendable: true }, () => {
+                this.shareImageZoom.current.moveTo({
+                  type: "Self",
+                  positionX: 0,
+                  positionY: 0,
+                  scale: 2.0,
+                  zoomCurrentDistance: 0
+                });
+              })}>
             </IconButton>
           </View>
           <ShareImageZoom ref={this.shareImageZoom} onMove={(params: IOnMove) => this.handleOnMove(params)} />

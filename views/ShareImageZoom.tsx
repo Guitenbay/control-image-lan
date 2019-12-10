@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Image, View, Dimensions } from "react-native";
 import ImageZoom from "react-native-image-pan-zoom";
 
+const demo = require("../assets/demo.jpg");
+
 export interface IOnMove {
   type: string;
   positionX: number;
@@ -44,7 +46,6 @@ export class ShareImageZoom extends React.PureComponent<IProps> {
 
   private handleMove(params: IOnMove) : void {
     this.props.onMove(params);
-    // console.log(params);
   }
 
   render() : JSX.Element {
@@ -59,7 +60,7 @@ export class ShareImageZoom extends React.PureComponent<IProps> {
           onMove={this.handleMove}>
           <Image
             style={{ width: 300, height: 200 }}
-            source={{ uri: 'https://unsplash.it/300/200' }} />
+            source={ demo } />
         </ImageZoom>
         {/* <Button
           onPress={this.handleCenterOn}

@@ -1,5 +1,5 @@
 const config = {
-  Ip: '192.168.31.199',
+  // you can change the number at will
   port: 8080
 }
 
