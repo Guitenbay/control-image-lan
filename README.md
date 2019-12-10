@@ -2,6 +2,7 @@
 
 > A react-native demo about controlling image on different smartphones in lan
 
+We can Cross-screen control image in lan now.
 
 This project has server which provides Websocket service.
 
